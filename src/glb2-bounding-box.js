@@ -1,4 +1,4 @@
-import gltf2BoundingBox from './gltf2-bounding-box';
+const gltf2BoundingBox = require("./gltf2-bounding-box.js")
 
 const glb2BoundingBox = {
 
@@ -18,4 +18,4 @@ const glb2BoundingBox = {
 
 };
 
-export default glb2BoundingBox;
+module.exports = glb2BoundingBox

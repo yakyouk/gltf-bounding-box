@@ -1,6 +1,6 @@
-import gltf1BoundingBox from './gltf1-bounding-box';
-import gltf2BoundingBox from './gltf2-bounding-box';
-import glb2BoundingBox from './glb2-bounding-box';
+const gltf2BoundingBox  = require("./gltf2-bounding-box.js")
+const gltf1BoundingBox  = require("./gltf1-bounding-box.js")
+const glb2BoundingBox   = require("./glb2-bounding-box.js")
 
 const gltfBoundingBox = {
 
@@ -36,4 +36,4 @@ const gltfBoundingBox = {
 
 };
 
-export default gltfBoundingBox;
+module.exports = gltfBoundingBox;

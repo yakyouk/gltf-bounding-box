@@ -1,8 +1,7 @@
-import { Matrix } from 'matrixmath';
-import { flattenDeep, includes } from 'lodash';
-import { loadPositions } from './gltf-reader';
-
-import precise from './precise';
+const Matrix        = require('matrixmath').Matrix;
+const includes      = require('lodash').includes;
+const loadPositions = require ('./gltf-reader.js').loadPositions;
+const precise       = require ('./precise.js');
 
 const gltf1BoundingBox = {
 
@@ -95,4 +94,4 @@ const gltf1BoundingBox = {
 
 };
 
-export default gltf1BoundingBox;
+module.exports = gltf1BoundingBox;

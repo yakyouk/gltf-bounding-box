@@ -121,4 +121,4 @@ const gltfReader = {
   }
 };
 
-export default gltfReader;
+module.exports = gltfReader

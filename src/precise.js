@@ -25,4 +25,4 @@ const precise = {
   }
 };
 
-export default precise;
+module.exports = precise
