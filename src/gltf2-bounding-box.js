@@ -1,5 +1,5 @@
 import { Matrix } from 'matrixmath';
-import { flattenDeep, includes } from 'lodash';
+import includes from 'lodash.includes';
 import { loadPositions } from './gltf-reader';
 
 import precise from './precise';
