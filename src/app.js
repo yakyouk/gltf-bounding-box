@@ -1,9 +1,8 @@
-const gltf2BoundingBox  = require("./gltf2-bounding-box.js")
-const gltf1BoundingBox  = require("./gltf1-bounding-box.js")
-const glb2BoundingBox   = require("./glb2-bounding-box.js")
+const gltf2BoundingBox = require("./gltf2-bounding-box.js");
+const gltf1BoundingBox = require("./gltf1-bounding-box.js");
+const glb2BoundingBox = require("./glb2-bounding-box.js");
 
 const gltfBoundingBox = {
-
   /**
    * @param {Object|Buffer} gltf
    * @param {Buffer} buffers External buffers list if any.
@@ -12,10 +11,13 @@ const gltfBoundingBox = {
    * @param {boolean} options.ceilDimensions ceil bounding box dimensions to prevent it of being smaller than the actual object.
    */
   computeBoundings(gltf, buffers = [], options) {
-    options = Object.assign({ 
-      precision: 0,
-      ceilDimensions: false,
-    }, options)
+    options = Object.assign(
+      {
+        precision: 0,
+        ceilDimensions: false,
+      },
+      options
+    );
     if (Boolean(gltf.readUInt32LE)) {
       const version = gltf.readUInt32LE(4);
       if (version === 2) {
@@ -33,7 +35,6 @@ const gltfBoundingBox = {
       }
     }
   },
-
 };
 
 module.exports = gltfBoundingBox;

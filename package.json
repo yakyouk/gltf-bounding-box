@@ -1,9 +1,10 @@
 {
   "name": "gltf-bounding-box",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Computes the global bounding box of a gltf model",
   "main": "src/app.js",
   "scripts": {
+    "build": "rimraf ./dist && webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,20 +16,20 @@
     "boundingbox",
     "3D-Tiles"
   ],
-  "author": "Wanadev, updates by harzival",
+  "author": "Wanadev, harzival, hegias, yakyouk",
   "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/harzival/gltf-bounding-box/issues"
   },
   "homepage": "https://github.com/harzival/gltf-bounding-box#readme",
   "dependencies": {
-    "lodash": "^4.17.5",
+    "lodash.includes": "^4.3.0",
     "matrixmath": "^2.2.2",
-    "three": "^0.103.0"
+    "three": "~0.139.2"
   },
   "devDependencies": {
-    "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
     "webpack-node-externals": "^1.7.2"
   }
 }

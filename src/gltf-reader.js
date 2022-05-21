@@ -2,12 +2,12 @@
 
 const gltfReader = {
   /**
-     * @private
-     * @param {Object} gltf
-     * @param {String|Number} meshName A number in glTF2
-     * @param {Object} [buffers={}] External buffers associations uri -> buffer
-     * @return {Object} Mesh geometry data
-     */
+   * @private
+   * @param {Object} gltf
+   * @param {String|Number} meshName A number in glTF2
+   * @param {Object} [buffers={}] External buffers associations uri -> buffer
+   * @return {Object} Mesh geometry data
+   */
   loadPositions(gltf, meshName, buffers = {}) {
     const mesh = gltf.meshes[meshName];
     const primitivesCount = mesh.primitives ? mesh.primitives.length : 0;
@@ -22,35 +22,26 @@ const gltfReader = {
       // Attributes
       if (!primitive.attributes) return;
 
-      positions = positions.concat(gltfReader._loadAccessor(
-        gltf,
-        primitive.attributes.POSITION,
-        buffers
-      ));
-    })
+      positions = positions.concat(gltfReader._loadAccessor(gltf, primitive.attributes.POSITION, buffers));
+    });
 
     return positions;
   },
 
   /**
-     * @private
-     * @param {Object} gltf
-     * @param {String|Number} accessorName A number in glTF2
-     * @param {Object} buffers
-     * @return {Number[]|null}
-     */
+   * @private
+   * @param {Object} gltf
+   * @param {String|Number} accessorName A number in glTF2
+   * @param {Object} buffers
+   * @return {Number[]|null}
+   */
   _loadAccessor(gltf, accessorName, buffers) {
     if (accessorName === undefined) return null;
 
     const accessor = gltf.accessors[accessorName];
     const offset = accessor.byteOffset || 0;
 
-    const buffer = gltfReader._loadBufferView(
-      gltf,
-      accessor.bufferView,
-      offset,
-      buffers
-    );
+    const buffer = gltfReader._loadBufferView(gltf, accessor.bufferView, offset, buffers);
 
     const array = [];
     switch (accessor.componentType) {
@@ -65,24 +56,21 @@ const gltfReader = {
         }
         break;
       default:
-        console.error(
-          "gltfLoader: Unsupported component type: " + accessor.componentType
-        );
+        console.error("gltfLoader: Unsupported component type: " + accessor.componentType);
     }
 
     return array;
   },
 
   /**
-     * @private
-     * @param {Object} gltf
-     * @param {String|Number} bufferViewName A number in glTF2
-     * @param {Number} offset
-     * @param {Object} buffers
-     * @return {Buffer}
-     */
+   * @private
+   * @param {Object} gltf
+   * @param {String|Number} bufferViewName A number in glTF2
+   * @param {Number} offset
+   * @param {Object} buffers
+   * @return {Buffer}
+   */
   _loadBufferView(gltf, bufferViewName, offset, buffers) {
-
     const bufferView = gltf.bufferViews[bufferViewName];
     const length = bufferView.byteLength || 0;
 
@@ -93,12 +81,12 @@ const gltfReader = {
   },
 
   /**
-     * @private
-     * @param {Object} gltf
-     * @param {String|Number} bufferName A number in glTF2
-     * @param {Object} buffers
-     * @return {Buffer}
-     */
+   * @private
+   * @param {Object} gltf
+   * @param {String|Number} bufferName A number in glTF2
+   * @param {Object} buffers
+   * @return {Buffer}
+   */
   _loadBuffer(gltf, bufferName, buffers) {
     if (buffers[bufferName]) {
       return buffers[bufferName];
@@ -107,18 +95,13 @@ const gltfReader = {
     const buffer = gltf.buffers[bufferName];
 
     if (!buffer.uri.startsWith("data:")) {
-      console.error(
-        "gltfReader: Currently unable to load buffers that are not data-URI based."
-      );
+      console.error("gltfReader: Currently unable to load buffers that are not data-URI based.");
       return null;
     }
 
-    buffers[bufferName] = Buffer.from(
-      buffer.uri.split(",")[1],
-      "base64"
-    );
+    buffers[bufferName] = Buffer.from(buffer.uri.split(",")[1], "base64");
     return buffers[bufferName];
-  }
+  },
 };
 
-module.exports = gltfReader
+module.exports = gltfReader;

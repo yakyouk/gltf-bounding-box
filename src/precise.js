@@ -1,5 +1,4 @@
 const precise = {
-    
   /**
    * @public
    * @param {Number} number
@@ -22,7 +21,7 @@ const precise = {
     const tempNumber = number * factor;
     const roundedTempNumber = operation(tempNumber);
     return roundedTempNumber / factor;
-  }
+  },
 };
 
-module.exports = precise
+module.exports = precise;

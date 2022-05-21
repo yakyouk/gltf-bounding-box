@@ -1,7 +1,6 @@
-const gltf2BoundingBox = require("./gltf2-bounding-box.js")
+const gltf2BoundingBox = require("./gltf2-bounding-box.js");
 
 const glb2BoundingBox = {
-
   computeBoundings(glb, options) {
     // Extract json chunk
     const jsonChunkLength = glb.readUInt32LE(12);
@@ -15,7 +14,6 @@ const glb2BoundingBox = {
 
     return gltf2BoundingBox.computeBoundings(gltf, [binChunkData], options);
   },
-
 };
 
-module.exports = glb2BoundingBox
+module.exports = glb2BoundingBox;
