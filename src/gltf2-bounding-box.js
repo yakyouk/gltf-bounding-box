@@ -1,7 +1,9 @@
-const Matrix        = require('matrixmath').Matrix;
-const includes      = require('lodash').includes;
-const loadPositions = require ('./gltf-reader.js').loadPositions;
-const precise       = require ('./precise.js');
+import { Matrix } from 'matrixmath';
+import { flattenDeep, includes } from 'lodash';
+import { loadPositions } from './gltf-reader';
+
+import precise from './precise';
+import trsMatrix from './trs-matrix';
 
 const gltf2BoundingBox = {
 
@@ -60,8 +62,8 @@ const gltf2BoundingBox = {
         includes(node.children, childNode.index)
       );
 
-    // Specify identity matrix if not present
-    const childNodeMatrix = childNode.matrix || [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    // Get matrix or compose TRS fields if present, TRS is by default Identity
+    const childNodeMatrix = childNode.matrix || trsMatrix.getTRSMatrix(childNode);
 
     return (parentNode !== undefined) ?
 
